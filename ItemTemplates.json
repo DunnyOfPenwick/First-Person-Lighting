@@ -1,0 +1,23 @@
+[
+    {
+        "index": 1773,
+        "name": "Alchemical Flare",
+        "baseWeight": 0.1,
+        "hitPoints": 3,
+        "capacityOrTarget": 9,
+        "basePrice": 7,
+        "enchantmentPoints": 0,
+        "rarity": 6,
+        "variants": 0,
+        "drawOrderOrEffect": 0,
+        "isBluntWeapon": false,
+        "isLiquid": false,
+        "isOneHanded": false,
+        "isIngredient": false,
+        "worldTextureArchive": 210,
+        "worldTextureRecord": 1773,
+        "playerTextureArchive": 0,
+        "playerTextureRecord": 0
+    }
+
+]

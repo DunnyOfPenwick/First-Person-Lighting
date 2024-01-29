@@ -1,0 +1,21 @@
+{
+    "ModTitle": "First-Person-Lighting",
+    "ModVersion": "1.0.0",
+    "ModAuthor": "DunnyOfPenwick",
+    "ContactInfo": "http://dfworkshop.net",
+    "DFUnity_Version": "1.0.0",
+    "ModDescription": "Shades first person graphics (weapons, horses) to match local lighting conditions.  Provides light-sensing utility.",
+    "GUID": "891cae81-a400-48c1-b35c-da9c02c5339a",
+    "Files": [
+        "Assets/Game/Mods/First-Person-Lighting/Scripts/FirstPersonLightingMod.cs",
+        "Assets/Game/Mods/First-Person-Lighting/modsettings.json",
+        "Assets/Game/Mods/First-Person-Lighting/Scripts/AlchemicalFlare.cs",
+        "Assets/Game/Mods/First-Person-Lighting/ItemTemplates.json",
+        "Assets/Game/Mods/First-Person-Lighting/Textures/210_1773-0.png",
+        "Assets/Game/Mods/First-Person-Lighting/Textures/AlchemicalFlare.flare",
+        "Assets/Game/Mods/First-Person-Lighting/Textures/flame.png",
+        "Assets/Game/Mods/First-Person-Lighting/Textures/LitAlchemicalFlare.png",
+        "Assets/Game/Mods/First-Person-Lighting/Sound/FlareHiss.ogg",
+        "Assets/Game/Mods/First-Person-Lighting/Sound/FlareStrike.ogg"
+    ]
+}
