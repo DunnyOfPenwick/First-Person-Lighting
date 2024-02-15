@@ -106,6 +106,15 @@ namespace FirstPersonLighting
                 Color playerTint = Instance.GetPlayerTint();
                 callBack("colorReply", playerTint);
             }
+            else if (message.Equals("gropeLightRange", StringComparison.OrdinalIgnoreCase))
+            {
+                if (useGropeLight == false)
+                    callBack("floatReply", 0);
+                else if (GameManager.Instance.PlayerEnterExit.IsPlayerSubmerged)
+                    callBack("floatReply", Instance.submergedGropeRange);
+                else
+                    callBack("floatReply", Instance.gropeRange);
+            }
             else
             {
                 Debug.LogError($"First-Person-Lighting:  MessageReceiver: unknown message {message}.");
@@ -624,6 +633,8 @@ namespace FirstPersonLighting
                         continue;
                     else if (obstacle == subject)
                         continue;
+                    else if (obstacle.GetComponent<DaggerfallLoot>())
+                        continue; //Ignore loot piles, they have abnormally large colliders.
                     else if (hit.distance < 0.35f)
                         continue; //i.e. ignore entities that might be holding the light
                     else
