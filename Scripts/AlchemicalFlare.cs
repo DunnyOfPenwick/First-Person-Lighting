@@ -77,8 +77,6 @@ namespace FirstPersonLighting
 
     public class LitFlare : MonoBehaviour
     {
-        const float runTime = 30f;
-
         //Assets
         Texture2D litAlchemicalFlareTexture;
         Flare flameFlare;
@@ -89,8 +87,9 @@ namespace FirstPersonLighting
         Light flameLight;
         LensFlare lensFlare;
         Rigidbody rigidBody;
-        float startTime;
         AudioSource audioSource;
+        float startTime;
+        float runTime;
 
 
         void Start()
@@ -102,6 +101,8 @@ namespace FirstPersonLighting
             flareHiss = mod.GetAsset<AudioClip>("FlareHiss");
 
             startTime = Time.time;
+
+            runTime = 35f + Random.Range(0f, 9f);
 
             DaggerfallBillboard dfBillboard = gameObject.AddComponent<DaggerfallBillboard>();
             Texture2D texture = litAlchemicalFlareTexture;
@@ -121,7 +122,7 @@ namespace FirstPersonLighting
 
             flameLight.color = color;
 
-            flameLight.range = 6f;
+            flameLight.range = 8f;
 
             lensFlare = flameObject.AddComponent<LensFlare>();
             lensFlare.flare = flameFlare;

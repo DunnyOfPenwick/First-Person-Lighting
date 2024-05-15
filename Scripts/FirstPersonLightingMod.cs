@@ -117,7 +117,7 @@ namespace FirstPersonLighting
             }
             else
             {
-                Debug.LogError($"First-Person-Lighting:  MessageReceiver: unknown message {message}.");
+                Debug.LogError($"First-Person-Lighting:  MessageReceiver: unknown message '{message}'.");
             }
 
         }
@@ -173,9 +173,6 @@ namespace FirstPersonLighting
                 GameManager.Instance.TransportManager.Tint = PlayerTint;
             }
 
-            //Update grope light position and range
-            AdjustGropeLight();
-
             //If underwater, extinguish player torches/lanterns
             if (GameManager.Instance.PlayerEnterExit.IsPlayerSubmerged)
             {
@@ -183,10 +180,16 @@ namespace FirstPersonLighting
                     ExtinguishFlames(); //Extinguish any lanterns/torches in use
             }
 
-            AdjustPlayerTorchOrLantern();
+            if (Time.frameCount % 6 == 0)
+            {
+                AdjustGropeLight();
 
-            //Check if magic weapon is readied or spell is being cast, activate magic light if so.
-            CheckActivateMagicLight();
+                AdjustPlayerTorchOrLantern();
+
+                //Check if magic weapon is readied or spell is being cast, activate magic light if so.
+                CheckActivateMagicLight();
+            }
+
         }
 
 
@@ -263,7 +266,7 @@ namespace FirstPersonLighting
                 gropeRange = 3.8f;
             else if (CheckIsVampire())
                 gropeRange = 4.2f;
-            if (player.BirthRaceTemplate.ID == (int)Races.Khajiit)
+            else if (player.BirthRaceTemplate.ID == (int)Races.Khajiit)
                 gropeRange = 3.5f;
             else if (player.BirthRaceTemplate.ID == (int)Races.Argonian)
                 submergedGropeRange = 8f;
@@ -319,7 +322,8 @@ namespace FirstPersonLighting
                 torchSmoother = 0;
                 return;
             }
-            else if (lightSource != lastLightItem)
+
+            if (lightSource != lastLightItem)
             {
                 lastLightItem = lightSource;
                 torchSmoother = 0;
@@ -349,9 +353,9 @@ namespace FirstPersonLighting
             //Gradually ramp-up or ramp-down the light intensity depending on movement.
             torchSmoother += targetIntensity * Time.deltaTime;
 
-            torchSmoother = Mathf.Clamp(torchSmoother, 0, 1);
+            torchSmoother = Mathf.Clamp(torchSmoother, 0.1f, 1);
 
-            if (torchSmoother > 0.02f)
+            if (torchSmoother > 0.1f)
                 torchSmoother += Mathf.Cos(Time.time * 15) / 60f; //some extra flicker
 
             if (torchSmoother <= 0)
@@ -494,11 +498,12 @@ namespace FirstPersonLighting
                 if (light.type != LightType.Point && light.type != LightType.Spot)
                     continue;
 
-                //Ignore lights that have the HideInInspector flag set.
+                //Ignore lights that have the HideInInspector flag set (e.g. the grope light).
                 //Those lights should only be visible to the player during render.
                 if (light.hideFlags == HideFlags.HideInInspector)
                     continue;
 
+                //Ignore lights too far from player.
                 float distance = Vector3.Distance(light.transform.position, playerLocation);
                 if (distance < 50)
                     lights.Add(light);
@@ -539,9 +544,9 @@ namespace FirstPersonLighting
                 tint = player.Entity.IsAShade ? shadowTint : Color.white;
 
                 if (player.Entity.IsBlending)
-                    tint.a = 0.1f + Mathf.Cos(Time.time * 8) * 0.05f;
+                    tint.a = 0.05f + Mathf.Cos(Time.time * 8) * 0.07f;
                 else if (player.Entity.IsInvisible)
-                    tint.a = 0.1f;
+                    tint.a = 0.075f;
             }
 
 
@@ -664,6 +669,7 @@ namespace FirstPersonLighting
 
         /// <summary>
         /// Checks if a given location is within the light cone of a spotlight.
+        /// This is in case someone adds a splotlight feature later.
         /// </summary>
         /// <returns></returns>
         bool CheckInSpotlight(Light spotlight, Vector3 location)

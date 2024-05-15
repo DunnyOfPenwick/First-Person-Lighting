@@ -2,8 +2,8 @@
     "ModTitle": "First-Person-Lighting",
     "ModVersion": "1.0.0",
     "ModAuthor": "DunnyOfPenwick",
-    "ContactInfo": "http://dfworkshop.net",
-    "DFUnity_Version": "1.0.0",
+    "ContactInfo": "dfworkshop.net or @proton.me",
+    "DFUnity_Version": "1.1.0",
     "ModDescription": "Shades first person graphics (weapons, horses) to match local lighting conditions.  Provides light-sensing utility.",
     "GUID": "891cae81-a400-48c1-b35c-da9c02c5339a",
     "Files": [
