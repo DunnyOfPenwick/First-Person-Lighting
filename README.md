@@ -20,13 +20,13 @@ Available messages are as follows:
 
             Mod firstPersonLightingMod = ModManager.Instance.GetMod("First-Person-Lighting");
 
-            if (firstPersonLightingMod == null || !firstPersonLightingMod.IsReady)
-                return lighting;
-
-            firstPersonLightingMod.MessageReceiver("entityLighting", entity, (string message, object data) =>
+            if (firstPersonLightingMod != null || firstPersonLightingMod.IsReady)
             {
-                lighting = (Color)data;
-            });
+                 firstPersonLightingMod.MessageReceiver("entityLighting", entity, (string message, object data) =>
+                 {
+                     lighting = (Color)data;
+                 });
+            }
 
             return lighting;
         }
