@@ -1,0 +1,14 @@
+-- Localized text for First-Person-Lighting mod
+
+-- Text values are literals and should be wrapped in quotes ""
+schema: *key,$text
+
+-- Mod Settings localization
+Settings.Options.Name, "Options"
+Settings.Options.GropeLight.Name, "GropeLight"
+Settings.Options.GropeLight.Description, "Activates a short range light to allow the player\rto see in very dark areas.\rOnly visible to the player."
+Settings.Options.ExtinguishFlames.Name, "ExtinguishFlames"
+Settings.Options.ExtinguishFlames.Description, "Extinguish torches/lanterns when submerged."
+Settings.Options.MovementAffectsTorches.Name, "MovementAffectsTorches"
+Settings.Options.MovementAffectsTorches.Description, "Movement affects torches and candles."
+

@@ -1,6 +1,6 @@
 {
     "ModTitle": "First-Person-Lighting",
-    "ModVersion": "1.0.0",
+    "ModVersion": "1.0.1",
     "ModAuthor": "DunnyOfPenwick",
     "ContactInfo": "dfworkshop.net or @proton.me",
     "DFUnity_Version": "1.1.0",
@@ -16,6 +16,10 @@
         "Assets/Game/Mods/First-Person-Lighting/Textures/flame.png",
         "Assets/Game/Mods/First-Person-Lighting/Textures/LitAlchemicalFlare.png",
         "Assets/Game/Mods/First-Person-Lighting/Sound/FlareHiss.ogg",
-        "Assets/Game/Mods/First-Person-Lighting/Sound/FlareStrike.ogg"
+        "Assets/Game/Mods/First-Person-Lighting/Sound/FlareStrike.ogg",
+        "Assets/Game/Mods/First-Person-Lighting/Text/[fr]textdatabase.txt",
+        "Assets/Game/Mods/First-Person-Lighting/Text/[pt]textdatabase.txt",
+        "Assets/Game/Mods/First-Person-Lighting/Text/[ru]textdatabase.txt",
+        "Assets/Game/Mods/First-Person-Lighting/Text/textdatabase.txt"
     ]
 }

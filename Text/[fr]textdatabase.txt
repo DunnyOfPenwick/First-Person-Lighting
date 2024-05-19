@@ -1,0 +1,14 @@
+-- Localized text for First-Person-Lighting mod
+
+-- Text values are literals and should be wrapped in quotes ""
+schema: *key,$text
+
+-- Mod Settings localization
+Settings.Options.Name, "Possibilités"
+Settings.Options.GropeLight.Name, "TâtonnerLumière"
+Settings.Options.GropeLight.Description, "Active une lumière à courte portée pour permettre au joueur de voir\rdans les zones très sombres.\rVisible uniquement par le joueur."
+Settings.Options.ExtinguishFlames.Name, "ÉteindreFlammes"
+Settings.Options.ExtinguishFlames.Description, "Éteignez les torches/lanternes lorsqu’elles sont immergées."
+Settings.Options.MovementAffectsTorches.Name, "MouvementAffecteTorches"
+Settings.Options.MovementAffectsTorches.Description, "Le mouvement affecte les torches et les bougies."
+

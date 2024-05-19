@@ -1,0 +1,14 @@
+-- Localized text for First-Person-Lighting mod
+
+-- Text values are literals and should be wrapped in quotes ""
+schema: *key,$text
+
+-- Mod Settings localization
+Settings.Options.Name, "Варианты"
+Settings.Options.GropeLight.Name, "НащупыватьСвет"
+Settings.Options.GropeLight.Description, "Активирует свет очень ближнего действия,\rпозволяющий игроку видеть в очень темных местах.\rВиден только игроку."
+Settings.Options.ExtinguishFlames.Name, "ПотушитьПламя"
+Settings.Options.ExtinguishFlames.Description, "Гасите факелы/фонари при погружении в воду."
+Settings.Options.MovementAffectsTorches.Name, "ДвижениеЭффектыФакелы"
+Settings.Options.MovementAffectsTorches.Description, "Движение влияет на факелы и свечи."
+

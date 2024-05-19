@@ -26,6 +26,7 @@ namespace FirstPersonLighting
         static bool allowExtinguishFlames;
         static bool alterTorchlight;
 
+        Color PlayerLighting = Color.gray;
         Color PlayerTint = Color.white;
 
         Light gropeLight;
@@ -59,7 +60,7 @@ namespace FirstPersonLighting
             ModSettings settings = Mod.GetSettings();
             useGropeLight = settings.GetBool("Options", "GropeLight");
             allowExtinguishFlames = settings.GetBool("Options", "ExtinguishFlames");
-            alterTorchlight = settings.GetBool("Options", "ExtinguishFlames");
+            alterTorchlight = settings.GetBool("Options", "MovementAffectsTorches");
 
             Mod.MessageReceiver = MessageReceiver;
 
@@ -253,7 +254,7 @@ namespace FirstPersonLighting
             if (!useGropeLight)
                 return;
 
-            gropeLight.enabled = PlayerTint.grayscale <= 0.05f;
+            gropeLight.enabled = PlayerLighting.grayscale <= 0.05f;
             if (!gropeLight.enabled)
                 return;
 
@@ -304,8 +305,7 @@ namespace FirstPersonLighting
 
 
         /// <summary>
-        /// If using PlayerItemTorch, adjust intensity of torch/lantern/candle to match player movement.
-        /// Torches and candles can potentially blow out.
+        /// If using PlayerItemTorch, adjust intensity of torch/candle to match player movement.
         /// </summary>
         void AdjustPlayerTorchOrLantern()
         {
@@ -330,7 +330,7 @@ namespace FirstPersonLighting
             }
 
             bool isTorch = lightSource.TemplateIndex == (int)UselessItems2.Torch;
-            bool isCandle = lightSource.TemplateIndex == (int)UselessItems2.Candle;
+            bool isCandle = lightSource.TemplateIndex == (int)UselessItems2.Candle || lightSource.TemplateIndex == (int)ReligiousItems.Holy_candle;
             bool isLantern = lightSource.TemplateIndex == (int)UselessItems2.Lantern;
 
             //Torches should be the brightest/longest range light. Scale others down.
@@ -338,8 +338,6 @@ namespace FirstPersonLighting
             float torchRange = torchItem.capacityOrTarget;
             float itemIntensity = isTorch ? 1 : isLantern ? 0.7f : 0.5f;
             float range = torchRange * itemIntensity;
-
-            float intensity = 0;
 
             float targetIntensity = itemIntensity;
 
@@ -351,17 +349,12 @@ namespace FirstPersonLighting
             }
 
             //Gradually ramp-up or ramp-down the light intensity depending on movement.
-            torchSmoother += targetIntensity * Time.deltaTime;
+            torchSmoother += targetIntensity * Time.deltaTime * 8;
 
             torchSmoother = Mathf.Clamp(torchSmoother, 0.1f, 1);
 
             if (torchSmoother > 0.1f)
                 torchSmoother += Mathf.Cos(Time.time * 15) / 60f; //some extra flicker
-
-            if (torchSmoother <= 0)
-                GameManager.Instance.PlayerEntity.LightSource = null; //oopsie
-            else
-                intensity = torchSmoother;
 
             //Logic lifted from EnablePlayerTorch code.
             float intensityMod;
@@ -397,7 +390,7 @@ namespace FirstPersonLighting
                 guttering = 0;
             }
 
-            torchLight.intensity = intensity * DaggerfallUnity.Settings.PlayerTorchLightScale * intensityMod;
+            torchLight.intensity = torchSmoother * DaggerfallUnity.Settings.PlayerTorchLightScale * intensityMod;
 
             PlayerTorch.SetActive(enableTorch);
         }
@@ -537,7 +530,8 @@ namespace FirstPersonLighting
         {
             DaggerfallEntityBehaviour player = GameManager.Instance.PlayerEntityBehaviour;
 
-            Color tint = GetEntityLighting(player);
+            PlayerLighting = GetEntityLighting(player);
+            Color tint = PlayerLighting;
 
             if (player.Entity.IsMagicallyConcealed)
             {

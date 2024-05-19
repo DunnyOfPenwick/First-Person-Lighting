@@ -9,21 +9,21 @@
                 {
                     "Value": true,
                     "Name": "GropeLight",
-                    "Description": "Activates a very short range light to allow the player to 'see' in very dark areas.. Only visible to the player.",
+                    "Description": "See textdatabase.txt",
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
                     "Value": true,
                     "Name": "ExtinguishFlames",
-                    "Description": "Automatically extinguish torches/lanterns when submerged.",
+                    "Description": "See textdatabase.txt",
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 },
                 {
-                    "Value": true,
-                    "Name": "AlterTorchlight",
-                    "Description": null,
+                    "Value": false,
+                    "Name": "MovementAffectsTorches",
+                    "Description": "See textdatabase.txt",
                     "$version": "v1",
                     "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.ToggleKey"
                 }
