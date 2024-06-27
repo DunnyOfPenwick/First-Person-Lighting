@@ -20,7 +20,7 @@ Available messages are as follows:
 
             Mod firstPersonLightingMod = ModManager.Instance.GetMod("First-Person-Lighting");
 
-            if (firstPersonLightingMod != null || firstPersonLightingMod.IsReady)
+            if (firstPersonLightingMod != null && firstPersonLightingMod.IsReady)
             {
                  firstPersonLightingMod.MessageReceiver("entityLighting", entity, (string message, object data) =>
                  {
